@@ -3757,8 +3757,8 @@ napríklad: alertnotify=echo %%s | mail -s "LAVAS Upozornenie" admin@foo.com
         <translation>Uzle na zoznam povolených nemôžu byť DoS zakázané a ich transakcie vždy postúpené ďalej, aj v prípade, ak sú už pamäťovej fronte. Užitočné napr. pre brány</translation>
     </message>
     <message>
-        <source>(18777 could be used only on mainnet)</source>
-        <translation>(18777 nemôže byť použité pre hlavnú sieť)</translation>
+        <source>(51555 could be used only on mainnet)</source>
+        <translation>(51555 nemôže byť použité pre hlavnú sieť)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -4175,7 +4175,7 @@ napríklad: alertnotify=echo %%s | mail -s "LAVAS Upozornenie" admin@foo.com
         <translation>Neplatný masternodeprivkey. Prosím pozrite do dokumentácie.</translation>
     </message>
     <message>
-        <source>(must be18777 for mainnet)</source>
+        <source>(must be51555 for mainnet)</source>
         <translation>(pre hlavnú sieť musí byť 9999)</translation>
     </message>
     <message>

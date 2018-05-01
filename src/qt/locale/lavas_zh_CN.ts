@@ -3615,8 +3615,8 @@ https://www.transifex.com/lavas-crypto/lavas-wallet-translations/</translation>
         <translation>在白名单中的节点不会因为检测到DoS攻击而被停用. 来自这些节点的交易也一定会被转发, 即使说交易本神就来自记忆池. 适用于网关</translation>
     </message>
     <message>
-        <source>(18777 could be used only on mainnet)</source>
-        <translation>(18777 只能被用于主网)</translation>
+        <source>(51555 could be used only on mainnet)</source>
+        <translation>(51555 只能被用于主网)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -3959,8 +3959,8 @@ https://www.transifex.com/lavas-crypto/lavas-wallet-translations/</translation>
         <translation>无效主节点私钥。请查阅文件材料。</translation>
     </message>
     <message>
-        <source>(must be18777 for mainnet)</source>
-        <translation>(设置18777 为主网)</translation>
+        <source>(must be51555 for mainnet)</source>
+        <translation>(设置51555 为主网)</translation>
     </message>
     <message>
         <source>Can't find random Masternode.</source>

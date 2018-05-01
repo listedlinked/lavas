@@ -56,18 +56,18 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-	(0, uint256("0x000006680a85db563f3a849c77e02a8c860068474ab2c5495cc24a2204727b62"));
+	(0, uint256("0x0000000fa44199c5bbcfc535ef422beedc5d08b620881fc157a80eaca5176ca3"));
 
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1523809869, // * UNIX timestamp of last checkpoint block
+    0, // * UNIX timestamp of last checkpoint block
     0,    // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the SetBestChain debug.log lines)
-    1200        // * estimated number of transactions per day after checkpoint
+    0        // * estimated number of transactions per day after checkpoint
 };
 
 static Checkpoints::MapCheckpoints mapCheckpointsTestnet =
-    boost::assign::map_list_of(0, uint256("0x0000083eda581357fce6db177da9049ee583b3d32236d4ff52e1f86fee2d5aad"));
+    boost::assign::map_list_of(0, uint256("0x0000079189a3147eddc1fc408469dafd50f349191dcc303e0361a2bc75aee49c"));
 static const Checkpoints::CCheckpointData dataTestnet = {
     &mapCheckpointsTestnet,
     0,
@@ -75,7 +75,7 @@ static const Checkpoints::CCheckpointData dataTestnet = {
     0};
 
 static Checkpoints::MapCheckpoints mapCheckpointsRegtest =
-    boost::assign::map_list_of(0, uint256("0x00000fea76c2e8523777b3dce649c363b4c5e0234605cae551f8d822d17fcc16"));
+    boost::assign::map_list_of(0, uint256("0x000006de64a7d3b4e1b652798afc547857053799cedd7342821b77c4f81fc7e9"));
 static const Checkpoints::CCheckpointData dataRegtest = {
     &mapCheckpointsRegtest,
     0,
@@ -98,8 +98,8 @@ public:
         pchMessageStart[1] = 0x24;
         pchMessageStart[2] = 0x35;
         pchMessageStart[3] = 0x44;
-        vAlertPubKey = ParseHex("0497dfcea626dca270cfe2eebf1160733b07352af966926e30058ca53dae05bbc71d64dbaa0c66e373211e324a23b361fc33e1e2dece1fb90afcefc707643a28f5");
-        nDefaultPort = 18777;
+        vAlertPubKey = ParseHex("04ed2165693b6ebcfacd556dcd6a817fca1b3e936c17f995071f42addc17cac849e018ea499d836596dd04ab3795665f49157b94a7f7ef91251180859e7cd735d5");
+        nDefaultPort = 51555;
         bnProofOfWorkLimit = ~uint256(0) >> 20; // LAVAS starting difficulty is 1 / 2^12  //20
         nSubsidyHalvingInterval = 210000;
         nMaxReorganizationDepth = 100;
@@ -109,31 +109,31 @@ public:
         nMinerThreads = 0;
         nTargetTimespan = 1 * 60; // LAVAS: 1 day
         nTargetSpacing = 1 * 60;  // LAVAS: 1 minute
-        nLastPOWBlock = 475200;
+        nLastPOWBlock = 100;
         nMaturity = 10;
         nMasternodeCountDrift = 20;
 		nMasternodeColleteralLimxDev = 1000; //Params().MasternodeColleteralLimxDev()
         nModifierUpdateBlock = 1; // we use the version 2 for dmd
         nMaxMoneyOut = 20000000 * COIN;
 
-        const char* pszTimestamp = "30th October 2017 - ALQO - The day you'll remember.";
+        const char* pszTimestamp = "In 1998, Steve Jobs asked Tim Cook to join Apple";
         CMutableTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
         txNew.vin[0].scriptSig = CScript() << 486604799 << CScriptNum(4) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
         txNew.vout[0].nValue = 0 * COIN;
-        txNew.vout[0].scriptPubKey = CScript() << ParseHex("040fbf75ea45bf7eb65f9075e8342b7520d077b66f964e9b1963c96cefd9a2c52e93d0def918e0cd3c91f42821f429b2be4505552dede31c96f95f0d843da0beae") << OP_CHECKSIG;
+        txNew.vout[0].scriptPubKey = CScript() << ParseHex("04de8d9731795267d02e7bc86c4a9189853c7d41c6f26751d913e6e0eecebb33c2798879d58c18023a3969841b7f349157b4d0938d302757f38992f90cb8755537") << OP_CHECKSIG;
         genesis.vtx.push_back(txNew);
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
-        genesis.nTime = 1509321601;
+        genesis.nTime = 1525176000;
         genesis.nBits = 0x1e0ffff0;
-        genesis.nNonce = 46765;
+        genesis.nNonce = 28812;
 		
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("0x000006680a85db563f3a849c77e02a8c860068474ab2c5495cc24a2204727b62"));
-        assert(genesis.hashMerkleRoot == uint256("0xb832a1d306b8e5b7feeb7f57ad908f6e93b89be00048393c923542036e135377"));
+        assert(hashGenesisBlock == uint256("0x0000000fa44199c5bbcfc535ef422beedc5d08b620881fc157a80eaca5176ca3"));
+        assert(genesis.hashMerkleRoot == uint256("0x768de1e53e20f4e1a5dc47131e23e03486ebf416f2a4d5bb6e9049e9ba17e81b"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -200,12 +200,12 @@ public:
         nMaxMoneyOut = 100000000 * COIN;
 
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
-        genesis.nTime = 1509321602;
-        genesis.nNonce = 343913;
+        genesis.nTime = 1525176001;
+        genesis.nNonce = 876670;
 
 
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("0x0000083eda581357fce6db177da9049ee583b3d32236d4ff52e1f86fee2d5aad"));
+        assert(hashGenesisBlock == uint256("0x0000079189a3147eddc1fc408469dafd50f349191dcc303e0361a2bc75aee49c"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -268,13 +268,13 @@ public:
         nTargetTimespan = 24 * 60 * 60; // LAVAS: 1 day
         nTargetSpacing = 1 * 60;        // LAVAS: 1 minutes
         bnProofOfWorkLimit = ~uint256(0) >> 1;
-        genesis.nTime = 1509321603;
+        genesis.nTime = 1525176002;
         genesis.nBits = 0x1e0ffff0;
-        genesis.nNonce = 129915;
+        genesis.nNonce = 892312;
 		
         hashGenesisBlock = genesis.GetHash();
         nDefaultPort = 55700;
-        assert(hashGenesisBlock == uint256("0x00000fea76c2e8523777b3dce649c363b4c5e0234605cae551f8d822d17fcc16"));
+        assert(hashGenesisBlock == uint256("0x000006de64a7d3b4e1b652798afc547857053799cedd7342821b77c4f81fc7e9"));
 
         vFixedSeeds.clear(); //! Testnet mode doesn't have any fixed seeds.
         vSeeds.clear();      //! Testnet mode doesn't have any DNS seeds.

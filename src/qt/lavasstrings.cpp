@@ -205,10 +205,10 @@ static const char UNUSED* lavas_strings[] = {
     QT_TRANSLATE_NOOP("lavas-core", ""
                                    "You must specify a masternodeprivkey in the configuration. Please see "
                                    "documentation for help."),
-    QT_TRANSLATE_NOOP("lavas-core", "(18777 could be used only on mainnet)"),
+    QT_TRANSLATE_NOOP("lavas-core", "(51555 could be used only on mainnet)"),
     QT_TRANSLATE_NOOP("lavas-core", "(default: %s)"),
     QT_TRANSLATE_NOOP("lavas-core", "(default: 1)"),
-    QT_TRANSLATE_NOOP("lavas-core", "(must be 18777 for mainnet)"),
+    QT_TRANSLATE_NOOP("lavas-core", "(must be 51555 for mainnet)"),
     QT_TRANSLATE_NOOP("lavas-core", "<category> can be:\n"),
     QT_TRANSLATE_NOOP("lavas-core", "Accept command line and JSON-RPC commands"),
     QT_TRANSLATE_NOOP("lavas-core", "Accept connections from outside (default: 1 if no -proxy or -connect)"),

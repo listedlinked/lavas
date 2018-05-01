@@ -3757,8 +3757,8 @@ zum Beispiel: alertnotify=echo %%s | mail -s \"LAVAS Alert\" admin@foo.com</tran
         <translation>Erlaubte Gegenstellen können nicht wegen DoS ausgeschlossen werden und ihre Transaktionen werden immer weitergeleitet, sogar wenn sie schon im Memory-Pool sind. Dies ist z.B. für Gateways nützlich.</translation>
     </message>
     <message>
-        <source>(18777 could be used only on mainnet)</source>
-        <translation>(18777 kann nur im Standardnetz benutzt werden)</translation>
+        <source>(51555 could be used only on mainnet)</source>
+        <translation>(51555 kann nur im Standardnetz benutzt werden)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -4176,8 +4176,8 @@ LAVAS Core wird heruntergefahren.</translation>
         <translation>Masternode-Geheimschlüssel (masternodeprivkey) ist ungültig. Siehe Dokumentation. </translation>
     </message>
     <message>
-        <source>(must be18777 for mainnet)</source>
-        <translation>(muss für Standardnetz18777 sein)</translation>
+        <source>(must be51555 for mainnet)</source>
+        <translation>(muss für Standardnetz51555 sein)</translation>
     </message>
     <message>
         <source>Can't find random Masternode.</source>

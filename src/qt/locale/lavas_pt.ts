@@ -3654,8 +3654,8 @@ https://www.transifex.com/lavas-crypto/lavas-wallet-translations/</translation>
         <translation>Aviso: Por favor verifique que a data e a hora do computador está correcta! Se o relógio estiver errado o LAVAS Core não vai funcionar correctamente.</translation>
     </message>
     <message>
-        <source>(18777 could be used only on mainnet)</source>
-        <translation>(18777 apenas pode ser usado para mainnet)</translation>
+        <source>(51555 could be used only on mainnet)</source>
+        <translation>(51555 apenas pode ser usado para mainnet)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -4064,8 +4064,8 @@ https://www.transifex.com/lavas-crypto/lavas-wallet-translations/</translation>
         <translation>masternodeprivkey inválida. Por favor reveja a documentação.</translation>
     </message>
     <message>
-        <source>(must be18777 for mainnet)</source>
-        <translation>(deve ser18777 para mainnet)</translation>
+        <source>(must be51555 for mainnet)</source>
+        <translation>(deve ser51555 para mainnet)</translation>
     </message>
     <message>
         <source>Can't find random Masternode.</source>
