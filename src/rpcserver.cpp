@@ -2,7 +2,7 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers 
-// Copyright (c) 2015-2017 The ALQO developers
+// Copyright (c) 2015-2017 The LAVAS developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -220,10 +220,10 @@ Value stop(const Array& params, bool fHelp)
     if (fHelp || params.size() > 1)
         throw runtime_error(
             "stop\n"
-            "\nStop ALQO server.");
+            "\nStop LAVAS server.");
     // Shutdown will take long enough that the response should get back
     StartShutdown();
-    return "ALQO server stopping";
+    return "LAVAS server stopping";
 }
 
 
@@ -300,16 +300,16 @@ static const CRPCCommand vRPCCommands[] =
         {"hidden", "reconsiderblock", &reconsiderblock, true, true, false},
         {"hidden", "setmocktime", &setmocktime, true, false, false},
 
-        /* ALQO features */
-        {"alqo", "masternode", &masternode, true, true, false},
-        {"alqo", "masternodelist", &masternodelist, true, true, false},
-        {"alqo", "mnbudget", &mnbudget, true, true, false},
-        {"alqo", "mnbudgetvoteraw", &mnbudgetvoteraw, true, true, false},
-        {"alqo", "mnfinalbudget", &mnfinalbudget, true, true, false},
-        {"alqo", "mnsync", &mnsync, true, true, false},
-        {"alqo", "spork", &spork, true, true, false},
+        /* LAVAS features */
+        {"lavas", "masternode", &masternode, true, true, false},
+        {"lavas", "masternodelist", &masternodelist, true, true, false},
+        {"lavas", "mnbudget", &mnbudget, true, true, false},
+        {"lavas", "mnbudgetvoteraw", &mnbudgetvoteraw, true, true, false},
+        {"lavas", "mnfinalbudget", &mnfinalbudget, true, true, false},
+        {"lavas", "mnsync", &mnsync, true, true, false},
+        {"lavas", "spork", &spork, true, true, false},
 #ifdef ENABLE_WALLET
-        {"alqo", "Darksend", &Darksend, false, false, true}, /* not threadSafe because of SendMoney */
+        {"lavas", "Darksend", &Darksend, false, false, true}, /* not threadSafe because of SendMoney */
 
         /* Wallet */
         {"wallet", "addmultisigaddress", &addmultisigaddress, true, false, true},
@@ -575,16 +575,16 @@ void StartRPCThreads()
         unsigned char rand_pwd[32];
         GetRandBytes(rand_pwd, 32);
         uiInterface.ThreadSafeMessageBox(strprintf(
-                                             _("To use alqod, or the -server option to alqo-qt, you must set an rpcpassword in the configuration file:\n"
+                                             _("To use lavasd, or the -server option to lavas-qt, you must set an rpcpassword in the configuration file:\n"
                                                "%s\n"
                                                "It is recommended you use the following random password:\n"
-                                               "rpcuser=alqorpc\n"
+                                               "rpcuser=lavasrpc\n"
                                                "rpcpassword=%s\n"
                                                "(you do not need to remember this password)\n"
                                                "The username and password MUST NOT be the same.\n"
                                                "If the file does not exist, create it with owner-readable-only file permissions.\n"
                                                "It is also recommended to set alertnotify so you are notified of problems;\n"
-                                               "for example: alertnotify=echo %%s | mail -s \"ALQO Alert\" admin@foo.com\n"),
+                                               "for example: alertnotify=echo %%s | mail -s \"LAVAS Alert\" admin@foo.com\n"),
                                              GetConfigFile().string(),
                                              EncodeBase58(&rand_pwd[0], &rand_pwd[0] + 32)),
             "", CClientUIInterface::MSG_ERROR | CClientUIInterface::SECURE);
@@ -1024,14 +1024,14 @@ json_spirit::Value CRPCTable::execute(const std::string& strMethod, const json_s
 
 std::string HelpExampleCli(string methodname, string args)
 {
-    return "> alqo-cli " + methodname + " " + args + "\n";
+    return "> lavas-cli " + methodname + " " + args + "\n";
 }
 
 std::string HelpExampleRpc(string methodname, string args)
 {
     return "> curl --user myusername --data-binary '{\"jsonrpc\": \"1.0\", \"id\":\"curltest\", "
            "\"method\": \"" +
-           methodname + "\", \"params\": [" + args + "] }' -H 'content-type: text/plain;' http://127.0.0.1:55000/\n";
+           methodname + "\", \"params\": [" + args + "] }' -H 'content-type: text/plain;' http://127.0.0.1:18015/\n";
 }
 
 const CRPCTable tableRPC;

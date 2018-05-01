@@ -2,7 +2,7 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers 
-// Copyright (c) 2015-2017 The ALQO developers
+// Copyright (c) 2015-2017 The LAVAS developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -10,7 +10,7 @@
 #define BITCOIN_MAIN_H
 
 #if defined(HAVE_CONFIG_H)
-#include "config/alqo-config.h"
+#include "config/lavas-config.h"
 #endif
 
 #include "amount.h"
@@ -53,7 +53,7 @@ struct CBlockTemplate;
 struct CNodeStateStats;
 
 /** Masternode Amount **/
-static const int MASTERNODEAMOUNT = 10000;
+static const int MASTERNODEAMOUNT = 1000;
 
 /** Default for -blockmaxsize and -blockminsize, which control the range of sizes the mining code will create **/
 static const unsigned int DEFAULT_BLOCK_MAX_SIZE = 3000000;

@@ -1,0 +1,20 @@
+<!DOCTYPE RCC><RCC version="1.0">
+    <qresource prefix="/translations">
+        <file alias="bg">locale/lavas_bg.qm</file>
+        <file alias="de">locale/lavas_de.qm</file>
+        <file alias="en">locale/lavas_en.qm</file>
+        <file alias="es">locale/lavas_es.qm</file>
+        <file alias="fi">locale/lavas_fi.qm</file>
+        <file alias="fr">locale/lavas_fr.qm</file>
+        <file alias="it">locale/lavas_it.qm</file>
+        <file alias="ja">locale/lavas_ja.qm</file>
+        <file alias="pl">locale/lavas_pl.qm</file>
+        <file alias="pt">locale/lavas_pt.qm</file>
+        <file alias="ru">locale/lavas_ru.qm</file>
+        <file alias="sk">locale/lavas_sk.qm</file>
+        <file alias="sv">locale/lavas_sv.qm</file>
+        <file alias="vi">locale/lavas_vi.qm</file>
+        <file alias="zh_CN">locale/lavas_zh_CN.qm</file>
+        <file alias="zh_TW">locale/lavas_zh_TW.qm</file>
+    </qresource>
+</RCC>

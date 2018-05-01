@@ -1,0 +1,26 @@
+# /etc/conf.d/lavasd: config file for /etc/init.d/lavasd
+
+# Config file location
+#BITCOIND_CONFIGFILE="/etc/lavas/lavas.conf"
+
+# What directory to write pidfile to?  (created and owned by $BITCOIND_USER)
+#BITCOIND_PIDDIR="/var/run/lavasd"
+
+# What filename to give the pidfile
+#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/lavasd.pid"
+
+# Where to write lavasd data (be mindful that the blockchain is large)
+#BITCOIND_DATADIR="/var/lib/lavasd"
+
+# User and group to own lavasd process
+#BITCOIND_USER="lavas"
+#BITCOIND_GROUP="lavas"
+
+# Path to lavasd executable
+#BITCOIND_BIN="/usr/bin/lavasd"
+
+# Nice value to run lavasd under
+#BITCOIND_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+BITCOIND_OPTS=""

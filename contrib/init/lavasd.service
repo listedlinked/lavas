@@ -1,0 +1,26 @@
+[Unit]
+Description=LAVAS's distributed currency daemon
+After=network.target
+
+[Service]
+User=lavas
+Group=lavas
+
+Type=forking
+PIDFile=/var/lib/lavasd/lavasd.pid
+
+ExecStart=/usr/bin/lavasd -daemon -pid=/var/lib/lavasd/lavasd.pid \
+          -conf=/etc/lavas/lavas.conf -datadir=/var/lib/lavasd
+
+ExecStop=-/usr/bin/lavas-cli -conf=/etc/lavas/lavas.conf \
+         -datadir=/var/lib/lavasd stop
+
+Restart=always
+PrivateTmp=true
+TimeoutStopSec=60s
+TimeoutStartSec=2s
+StartLimitInterval=120s
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target

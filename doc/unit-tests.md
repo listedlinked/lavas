@@ -6,13 +6,13 @@ and tests weren't explicitly disabled.
 
 After configuring, they can be run with 'make check'.
 
-To run the alqod tests manually, launch src/test/test_alqo .
+To run the lavasd tests manually, launch src/test/test_lavas .
 
-To add more alqod tests, add `BOOST_AUTO_TEST_CASE` functions to the existing
+To add more lavasd tests, add `BOOST_AUTO_TEST_CASE` functions to the existing
 .cpp files in the test/ directory or add new .cpp files that
 implement new BOOST_AUTO_TEST_SUITE sections.
 
-To run the alqo-qt tests manually, launch src/qt/test/alqo-qt_test
+To run the lavas-qt tests manually, launch src/qt/test/lavas-qt_test
 
-To add more alqo-qt tests, add them to the `src/qt/test/` directory and
+To add more lavas-qt tests, add them to the `src/qt/test/` directory and
 the `src/qt/test/test_main.cpp` file.

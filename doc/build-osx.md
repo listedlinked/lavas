@@ -1,6 +1,6 @@
 Mac OS X Build Instructions and Notes
 ====================================
-This guide will show you how to build alqod (headless client) for OSX.
+This guide will show you how to build lavasd (headless client) for OSX.
 
 Notes
 -----
@@ -40,14 +40,14 @@ Instructions: Homebrew
 
         brew install autoconf automake berkeley-db4 libtool boost miniupnpc openssl pkg-config protobuf qt5
 
-### Building `alqod`
+### Building `lavasd`
 
 1. Clone the github tree to get the source code and go into the directory.
 
-        git clone https://github.com/ALQOCRYPTO/ALQO
-        cd ALQO
+        git clone https://github.com/listedlinked/lavas
+        cd LAVAS
 
-2.  Build alqod:
+2.  Build lavasd:
 
         ./autogen.sh
         ./configure --with-gui=qt5
@@ -57,7 +57,7 @@ Instructions: Homebrew
 
         make check
 
-4.  (Optional) You can also install alqod to your path:
+4.  (Optional) You can also install lavasd to your path:
 
         make install
 
@@ -69,7 +69,7 @@ Download Qt Creator from http://www.qt.io/download/. Download the "community edi
 1. Make sure you installed everything through homebrew mentioned above
 2. Do a proper ./configure --with-gui=qt5 --enable-debug
 3. In Qt Creator do "New Project" -> Import Project -> Import Existing Project
-4. Enter "alqo-qt" as project name, enter src/qt as location
+4. Enter "lavas-qt" as project name, enter src/qt as location
 5. Leave the file selection as it is
 6. Confirm the "summary page"
 7. In the "Projects" tab select "Manage Kits..."
@@ -79,11 +79,11 @@ Download Qt Creator from http://www.qt.io/download/. Download the "community edi
 
 Creating a release build
 ------------------------
-You can ignore this section if you are building `alqod` for your own use.
+You can ignore this section if you are building `lavasd` for your own use.
 
-alqod/alqo-cli binaries are not included in the alqo-Qt.app bundle.
+lavasd/lavas-cli binaries are not included in the lavas-Qt.app bundle.
 
-If you are building `alqod` or `alqo-qt` for others, your build machine should be set up
+If you are building `lavasd` or `lavas-qt` for others, your build machine should be set up
 as follows for maximum compatibility:
 
 All dependencies should be compiled with these flags:
@@ -92,30 +92,30 @@ All dependencies should be compiled with these flags:
  -arch x86_64
  -isysroot $(xcode-select --print-path)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk
 
-Once dependencies are compiled, see release-process.md for how the ALQO-Qt.app
+Once dependencies are compiled, see release-process.md for how the LAVAS-Qt.app
 bundle is packaged and signed to create the .dmg disk image that is distributed.
 
 Running
 -------
 
-It's now available at `./alqod`, provided that you are still in the `src`
+It's now available at `./lavasd`, provided that you are still in the `src`
 directory. We have to first create the RPC configuration file, though.
 
-Run `./alqod` to get the filename where it should be put, or just try these
+Run `./lavasd` to get the filename where it should be put, or just try these
 commands:
 
-    echo -e "rpcuser=alqorpc\nrpcpassword=$(xxd -l 16 -p /dev/urandom)" > "/Users/${USER}/Library/Application Support/ALQO/alqo.conf"
-    chmod 600 "/Users/${USER}/Library/Application Support/ALQO/alqo.conf"
+    echo -e "rpcuser=lavasrpc\nrpcpassword=$(xxd -l 16 -p /dev/urandom)" > "/Users/${USER}/Library/Application Support/LAVAS/lavas.conf"
+    chmod 600 "/Users/${USER}/Library/Application Support/LAVAS/lavas.conf"
 
 The next time you run it, it will start downloading the blockchain, but it won't
 output anything while it's doing this. This process may take several hours;
 you can monitor its process by looking at the debug.log file, like this:
 
-    tail -f $HOME/Library/Application\ Support/ALQO/debug.log
+    tail -f $HOME/Library/Application\ Support/LAVAS/debug.log
 
 Other commands:
 -------
 
-    ./alqod -daemon # to start the alqo daemon.
-    ./alqo-cli --help  # for a list of command-line options.
-    ./alqo-cli help    # When the daemon is running, to get a list of RPC commands
+    ./lavasd -daemon # to start the lavas daemon.
+    ./lavas-cli --help  # for a list of command-line options.
+    ./lavas-cli help    # When the daemon is running, to get a list of RPC commands

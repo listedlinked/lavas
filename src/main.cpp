@@ -2,7 +2,7 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers 
-// Copyright (c) 2015-2017 The ALQO developers
+// Copyright (c) 2018 The LAVAS developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -42,7 +42,7 @@ using namespace boost;
 using namespace std;
 
 #if defined(NDEBUG)
-#error "ALQO cannot be compiled without assertions."
+#error "LAVAS cannot be compiled without assertions."
 #endif
 
 /**
@@ -96,7 +96,7 @@ static void CheckBlockIndex();
 /** Constant stuff for coinbase transactions we create: */
 CScript COINBASE_FLAGS;
 
-const string strMessageMagic = "ALQO Signed Message:\n";
+const string strMessageMagic = "LAVAS Signed Message:\n";
 
 // Internal stuff
 namespace
@@ -1621,35 +1621,20 @@ double ConvertBitsToDouble(unsigned int nBits)
 int64_t GetBlockValue(int nHeight)
 {
  
-    if (Params().NetworkID() == CBaseChainParams::TESTNET) {
-        if (nHeight < 200 && nHeight > 0)
-            return 250000 * COIN;
-    }
-	
-	if (nHeight == 0) return 100001 * COIN;
+	if (nHeight == 1) return 84000 * COIN;
 		
 	int64_t nSubsidy;
 	
-	if(nHeight <= 86400 && nHeight > 0) {
-        nSubsidy = 200 * COIN;
-	} else if (nHeight > 86400 && nHeight <= 151200) {
-		nSubsidy = 150 * COIN;
-	} else if (nHeight > 151200 && nHeight <= 302400) {
-		nSubsidy = 125 * COIN;
-	} else if (nHeight > 302400 && nHeight <= 345600) {
-		nSubsidy = 100 * COIN;
-	} else if (nHeight > 345600 && nHeight <= 388800) {
-		nSubsidy = 75 * COIN;
-	} else if (nHeight > 388800 && nHeight <= 475200) { // 475200 => LAST POW BLOCK
-		nSubsidy = 50 * COIN;
-	} else if (nHeight > 475200 && nHeight <= 518400) { // 475201 => FIRST POS BLOCK
-		nSubsidy = 50 * COIN;
-	} else if (nHeight > 518400 && nHeight <= 561600) {
-		nSubsidy = 25 * COIN;
-	} else if (nHeight > 561600 && nHeight <= 604800) {
-		nSubsidy = 10 * COIN;
-	} else if (nHeight > 604800) {
-		nSubsidy = 5 * COIN;
+	if( nHeight > 1 && nHeight <= 100 ) {
+	        nSubsidy = 1 * COIN;
+	} else if( nHeight > 100 && nHeight <= 3500 ) {
+	        nSubsidy = 5 * COIN;
+	} else if( nHeight > 3500 && nHeight <= 7500 ) {
+	        nSubsidy = 20 * COIN;
+	} else if( nHeight > 7500 && nHeight <= 20000 ) {
+	        nSubsidy = 25 * COIN;
+	} else {
+		nSubsidy = 30 * COIN;
 	}
 	
     return nSubsidy;
@@ -1660,55 +1645,9 @@ int64_t GetMasternodePayment(int nHeight, int64_t blockValue, int nMasternodeCou
 {
 
 
-    if (Params().NetworkID() == CBaseChainParams::TESTNET) {
-        if (nHeight < 200)
-            return 0;
-    }
-	
 	int64_t ret = 0;
 	
-	if(nHeight <= 86400 && nHeight > 0) {
-        ret = blockValue / 100 * 20;
-	} else if (nHeight > 86400 && nHeight <= 151200) {
-        ret = blockValue / 100 * 25;
-	} else if (nHeight > 151200 && nHeight <= 152500) {
-        ret = blockValue / 100 * 20;
-	} else if (nHeight > 152500 && nHeight <= 225000) {
-        ret = blockValue / 100 * 30;
-	} else if (nHeight > 225000 && nHeight <= 475200) {
-        ret = blockValue / 100 * 60;
-	} else if (nHeight > 475200) {
-		
-		int64_t nMoneySupply = chainActive.Tip()->nMoneySupply;
-		
-		if(nMasternodeCount < 1) {
-			nMasternodeCount = mnodeman.stable_size();
-		}
-		
-		int64_t mNodeCoins = nMasternodeCount * 10000 * COIN;
-		
-		if (mNodeCoins == 0) {
-            ret = 0;
-		} else {
-			double lockedCoinValue = mNodeCoins / nMoneySupply;
-			
-			
-			double masternodeMultiplier = 1 - lockedCoinValue;
-			
-			if(masternodeMultiplier < .1) {
-				masternodeMultiplier = .1;
-			} else if(masternodeMultiplier > .9) {
-				masternodeMultiplier = .9;
-			}
-			
-			LogPrintf("[LIBRA] Adjusting Libra at height %d with %d masternodes (%d % locked ALQO) and %d ALQO supply at %ld\n", nHeight, nMasternodeCount, lockedCoinValue*100, nMoneySupply, GetTime());
-			LogPrintf("[LIBRA] Masternode: %d\n", masternodeMultiplier*100);
-			LogPrintf("[LIBRA] Staker: %d\n", (1 - masternodeMultiplier)*100);
-			
-			ret = blockValue * masternodeMultiplier;
-		}
-		
-	}
+        ret = blockValue * 0.7;
 	
 	return ret;
 }
@@ -2097,7 +2036,7 @@ static CCheckQueue<CScriptCheck> scriptcheckqueue(128);
 
 void ThreadScriptCheck()
 {
-    RenameThread("alqo-scriptch");
+    RenameThread("lavas-scriptch");
     scriptcheckqueue.Thread();
 }
 
@@ -3106,12 +3045,12 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
 		if (!CheckBlockHeader(block, state, fCheckPOW))
 			return state.DoS(100, error("CheckBlock() : CheckBlockHeader failed"),
 				REJECT_INVALID, "bad-header", true);
-	}
+}
 			/*
 			    if (!CheckBlockHeader(block, state, block.IsProofOfWork()))
-					return state.DoS(100, error("CheckBlock() : CheckBlockHeader failed"),
-					REJECT_INVALID, "bad-header", true);
-			*/
+        return state.DoS(100, error("CheckBlock() : CheckBlockHeader failed"),
+REJECT_INVALID, "bad-header", true);
+*/
     // Check timestamp
     LogPrint("debug", "%s: block=%s  is proof of stake=%d\n", __func__, block.GetHash().ToString().c_str(), block.IsProofOfStake());
     if (block.GetBlockTime() > GetAdjustedTime() + (block.IsProofOfStake() ? 180 : 7200)) // 3 minute future drift for PoS
@@ -3134,7 +3073,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
             return state.DoS(100, error("CheckBlock() : duplicate transaction"),
                 REJECT_INVALID, "bad-txns-duplicate", true);
     }
-			
+
     // All potential-corruption validation must be done before we do any
     // transaction validation, as otherwise we may mark the header as invalid
     // because we receive the wrong transactions for it.
@@ -3202,12 +3141,13 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
                 nHeight = (*mi).second->nHeight + 1;
         }
 
-        if (nHeight != 0) {
+        if (nHeight != 0 && !IsInitialBlockDownload()) {
             if (!IsBlockPayeeValid(block, nHeight)) {
                 mapRejectedBlocks.insert(make_pair(block.GetHash(), GetTime()));
                 return state.DoS(100, error("CheckBlock() : Couldn't find masternode/budget payment"));
             }
         } else {
+            if (fDebug)
                 LogPrintf("CheckBlock(): Masternode payment check skipped on sync - skipping IsBlockPayeeValid()\n");
         }
     }

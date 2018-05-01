@@ -2,7 +2,7 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
-// Copyright (c) 2015-2017 The ALQO developers
+// Copyright (c) 2015-2017 The LAVAS developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -56,35 +56,31 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-	(0, uint256("0x000006680a85db563f3a849c77e02a8c860068474ab2c5495cc24a2204727b62"))
-	(225000, uint256("0x0000000000001121808b217485fb774b79e06c528254ada7b06473a7da4a7c8b"))
-	(225001, uint256("0x0000000000001f44d85b8f2b5ead0630f2796cb2d26017f79b7a0221d17d4da2"))
-	(225020, uint256("0x0000000000016246ac12933f8afa593f1846ba468a6bdc0c85e40c19b9b0ccca"))
-	(225040, uint256("0x0000000000022a323903976c5d4bf0fc3434922dad1f6e30804ac40b2117ac25"))
-	(225200, uint256("0x000000000000447aace641e9e58af4f4b94336e10cf945cdb28479cd262db059"));
+	(0, uint256("0x000006680a85db563f3a849c77e02a8c860068474ab2c5495cc24a2204727b62"));
+
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
     1523809869, // * UNIX timestamp of last checkpoint block
-    1157185,    // * total number of transactions between genesis and last checkpoint
+    0,    // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the SetBestChain debug.log lines)
-    2000        // * estimated number of transactions per day after checkpoint
+    1200        // * estimated number of transactions per day after checkpoint
 };
 
 static Checkpoints::MapCheckpoints mapCheckpointsTestnet =
     boost::assign::map_list_of(0, uint256("0x0000083eda581357fce6db177da9049ee583b3d32236d4ff52e1f86fee2d5aad"));
 static const Checkpoints::CCheckpointData dataTestnet = {
     &mapCheckpointsTestnet,
-    1454124731,
     0,
-    250};
+    0,
+    0};
 
 static Checkpoints::MapCheckpoints mapCheckpointsRegtest =
     boost::assign::map_list_of(0, uint256("0x00000fea76c2e8523777b3dce649c363b4c5e0234605cae551f8d822d17fcc16"));
 static const Checkpoints::CCheckpointData dataRegtest = {
     &mapCheckpointsRegtest,
-    1454124731,
     0,
-    100};
+    0,
+    0};
 
 class CMainParams : public CChainParams
 {
@@ -98,27 +94,27 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 4-byte int at any alignment.
          */
-        pchMessageStart[0] = 0x94;
-        pchMessageStart[1] = 0x04;
-        pchMessageStart[2] = 0x15;
-        pchMessageStart[3] = 0x14;
+        pchMessageStart[0] = 0x84;
+        pchMessageStart[1] = 0x24;
+        pchMessageStart[2] = 0x35;
+        pchMessageStart[3] = 0x44;
         vAlertPubKey = ParseHex("0497dfcea626dca270cfe2eebf1160733b07352af966926e30058ca53dae05bbc71d64dbaa0c66e373211e324a23b361fc33e1e2dece1fb90afcefc707643a28f5");
-        nDefaultPort = 55500;
-        bnProofOfWorkLimit = ~uint256(0) >> 20; // ALQO starting difficulty is 1 / 2^12  //20
+        nDefaultPort = 18777;
+        bnProofOfWorkLimit = ~uint256(0) >> 20; // LAVAS starting difficulty is 1 / 2^12  //20
         nSubsidyHalvingInterval = 210000;
         nMaxReorganizationDepth = 100;
         nEnforceBlockUpgradeMajority = 750;
         nRejectBlockOutdatedMajority = 950;
         nToCheckBlockUpgradeMajority = 1000;
         nMinerThreads = 0;
-        nTargetTimespan = 1 * 60; // ALQO: 1 day
-        nTargetSpacing = 1 * 60;  // ALQO: 1 minute
+        nTargetTimespan = 1 * 60; // LAVAS: 1 day
+        nTargetSpacing = 1 * 60;  // LAVAS: 1 minute
         nLastPOWBlock = 475200;
-        nMaturity = 110;
+        nMaturity = 10;
         nMasternodeCountDrift = 20;
-		nMasternodeColleteralLimxDev = 10000; //Params().MasternodeColleteralLimxDev()
+		nMasternodeColleteralLimxDev = 1000; //Params().MasternodeColleteralLimxDev()
         nModifierUpdateBlock = 1; // we use the version 2 for dmd
-        nMaxMoneyOut = 100000000 * COIN;
+        nMaxMoneyOut = 20000000 * COIN;
 
         const char* pszTimestamp = "30th October 2017 - ALQO - The day you'll remember.";
         CMutableTransaction txNew;
@@ -139,21 +135,9 @@ public:
         assert(hashGenesisBlock == uint256("0x000006680a85db563f3a849c77e02a8c860068474ab2c5495cc24a2204727b62"));
         assert(genesis.hashMerkleRoot == uint256("0xb832a1d306b8e5b7feeb7f57ad908f6e93b89be00048393c923542036e135377"));
 
-        vSeeds.push_back(CDNSSeedData("85.25.138.64", "85.25.138.64"));
-        vSeeds.push_back(CDNSSeedData("85.25.251.198", "85.25.251.198"));
-        vSeeds.push_back(CDNSSeedData("85.25.251.199", "85.25.251.199"));
+        vFixedSeeds.clear();
+        vSeeds.clear();
 		
-        vSeeds.push_back(CDNSSeedData("80.209.227.9", "80.209.227.9"));
-        vSeeds.push_back(CDNSSeedData("80.209.228.190", "80.209.228.190"));
-        vSeeds.push_back(CDNSSeedData("80.209.228.191", "80.209.228.191"));
-        vSeeds.push_back(CDNSSeedData("80.209.228.192", "80.209.228.192"));
-        vSeeds.push_back(CDNSSeedData("80.209.228.193", "80.209.228.193"));
-        vSeeds.push_back(CDNSSeedData("80.209.228.189", "80.209.228.189"));
-        vSeeds.push_back(CDNSSeedData("80.209.228.194", "80.209.228.194"));
-        vSeeds.push_back(CDNSSeedData("80.209.228.197", "80.209.228.197"));
-        vSeeds.push_back(CDNSSeedData("80.209.228.196", "80.209.228.196"));
-        vSeeds.push_back(CDNSSeedData("80.209.228.195", "80.209.228.195"));
-
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 23);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 16);
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 193);
@@ -198,19 +182,19 @@ public:
     {
         networkID = CBaseChainParams::TESTNET;
         strNetworkID = "test";
-        pchMessageStart[0] = 0x64;
-        pchMessageStart[1] = 0x44;
-        pchMessageStart[2] = 0x65;
-        pchMessageStart[3] = 0x54;
+        pchMessageStart[0] = 0x24;
+        pchMessageStart[1] = 0x64;
+        pchMessageStart[2] = 0x75;
+        pchMessageStart[3] = 0x34;
         vAlertPubKey = ParseHex("04e1d34432d3a5803312f33cf20686b1801835ea8efb18ad77d50b5ec1ce5ca73de65c36c082ca5c51880f8ffb5a296d8dc780f1dc02f22eba4dde1816a6a54b75");
         nDefaultPort = 55600;
         nEnforceBlockUpgradeMajority = 51;
         nRejectBlockOutdatedMajority = 75;
         nToCheckBlockUpgradeMajority = 100;
         nMinerThreads = 0;
-        nTargetTimespan = 1 * 60; // ALQO: 1 day
-        nTargetSpacing = 1 * 60;  // ALQO: 1 minute
-        nLastPOWBlock = 200;
+        nTargetTimespan = 1 * 60; // LAVAS: 1 day
+        nTargetSpacing = 1 * 60;  // LAVAS: 1 minute
+        nLastPOWBlock = 100;
         nMaturity = 15;
         nModifierUpdateBlock = 51197; //approx Mon, 17 Apr 2017 04:00:00 GMT
         nMaxMoneyOut = 100000000 * COIN;
@@ -226,29 +210,14 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
 		
-		vSeeds.push_back(CDNSSeedData("85.25.138.64", "85.25.138.64"));
-        vSeeds.push_back(CDNSSeedData("85.25.251.198", "85.25.251.198"));
-        vSeeds.push_back(CDNSSeedData("85.25.251.199", "85.25.251.199"));
-		
-        vSeeds.push_back(CDNSSeedData("80.209.227.9", "80.209.227.9"));
-        vSeeds.push_back(CDNSSeedData("80.209.228.190", "80.209.228.190"));
-        vSeeds.push_back(CDNSSeedData("80.209.228.191", "80.209.228.191"));
-        vSeeds.push_back(CDNSSeedData("80.209.228.192", "80.209.228.192"));
-        vSeeds.push_back(CDNSSeedData("80.209.228.193", "80.209.228.193"));
-        vSeeds.push_back(CDNSSeedData("80.209.228.189", "80.209.228.189"));
-        vSeeds.push_back(CDNSSeedData("80.209.228.194", "80.209.228.194"));
-        vSeeds.push_back(CDNSSeedData("80.209.228.197", "80.209.228.197"));
-        vSeeds.push_back(CDNSSeedData("80.209.228.196", "80.209.228.196"));
-        vSeeds.push_back(CDNSSeedData("80.209.228.195", "80.209.228.195"));
-
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 83);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 18);
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 193);
-        // Testnet alqo BIP32 pubkeys start with 'DRKV'
+        // Testnet lavas BIP32 pubkeys start with 'DRKV'
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x3a)(0x80)(0x61)(0xa0).convert_to_container<std::vector<unsigned char> >();
-        // Testnet alqo BIP32 prvkeys start with 'DRKP'
+        // Testnet lavas BIP32 prvkeys start with 'DRKP'
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x3a)(0x80)(0x58)(0x37).convert_to_container<std::vector<unsigned char> >();
-        // Testnet alqo BIP44 coin type is '1' (All coin's testnet default)
+        // Testnet lavas BIP44 coin type is '1' (All coin's testnet default)
         base58Prefixes[EXT_COIN_TYPE] = boost::assign::list_of(0x80)(0x00)(0x00)(0x01).convert_to_container<std::vector<unsigned char> >();
 
         convertSeed6(vFixedSeeds, pnSeed6_test, ARRAYLEN(pnSeed6_test));
@@ -287,17 +256,17 @@ public:
         networkID = CBaseChainParams::REGTEST;
         strNetworkID = "regtest";
         strNetworkID = "regtest";
-        pchMessageStart[0] = 0x14;
-        pchMessageStart[1] = 0x54;
-        pchMessageStart[2] = 0x95;
-        pchMessageStart[3] = 0x64;
+        pchMessageStart[0] = 0x44;
+        pchMessageStart[1] = 0x64;
+        pchMessageStart[2] = 0x85;
+        pchMessageStart[3] = 0x24;
         nSubsidyHalvingInterval = 150;
         nEnforceBlockUpgradeMajority = 750;
         nRejectBlockOutdatedMajority = 950;
         nToCheckBlockUpgradeMajority = 1000;
         nMinerThreads = 1;
-        nTargetTimespan = 24 * 60 * 60; // ALQO: 1 day
-        nTargetSpacing = 1 * 60;        // ALQO: 1 minutes
+        nTargetTimespan = 24 * 60 * 60; // LAVAS: 1 day
+        nTargetSpacing = 1 * 60;        // LAVAS: 1 minutes
         bnProofOfWorkLimit = ~uint256(0) >> 1;
         genesis.nTime = 1509321603;
         genesis.nBits = 0x1e0ffff0;

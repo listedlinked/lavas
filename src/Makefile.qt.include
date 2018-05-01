@@ -1,24 +1,24 @@
-bin_PROGRAMS += qt/alqo-qt
+bin_PROGRAMS += qt/lavas-qt
 EXTRA_LIBRARIES += qt/libbitcoinqt.a
 
-# alqo qt core #
+# lavas qt core #
 QT_TS = \
-  qt/locale/alqo_bg.ts \
-  qt/locale/alqo_de.ts \
-  qt/locale/alqo_en.ts \
-  qt/locale/alqo_es.ts \
-  qt/locale/alqo_fi.ts \
-  qt/locale/alqo_fr.ts \
-  qt/locale/alqo_it.ts \
-  qt/locale/alqo_ja.ts \
-  qt/locale/alqo_pl.ts \
-  qt/locale/alqo_pt.ts \
-  qt/locale/alqo_ru.ts \
-  qt/locale/alqo_sk.ts \
-  qt/locale/alqo_sv.ts \
-  qt/locale/alqo_vi.ts \
-  qt/locale/alqo_zh_CN.ts \
-  qt/locale/alqo_zh_TW.ts
+  qt/locale/lavas_bg.ts \
+  qt/locale/lavas_de.ts \
+  qt/locale/lavas_en.ts \
+  qt/locale/lavas_es.ts \
+  qt/locale/lavas_fi.ts \
+  qt/locale/lavas_fr.ts \
+  qt/locale/lavas_it.ts \
+  qt/locale/lavas_ja.ts \
+  qt/locale/lavas_pl.ts \
+  qt/locale/lavas_pt.ts \
+  qt/locale/lavas_ru.ts \
+  qt/locale/lavas_sk.ts \
+  qt/locale/lavas_sv.ts \
+  qt/locale/lavas_vi.ts \
+  qt/locale/lavas_zh_CN.ts \
+  qt/locale/lavas_zh_TW.ts
 
 QT_FORMS_UI = \
   qt/forms/addressbookpage.ui \
@@ -98,16 +98,16 @@ BITCOIN_MM = \
   qt/macnotificationhandler.mm
 
 QT_MOC = \
-  qt/alqo.moc \
+  qt/lavas.moc \
   qt/bitcoinamountfield.moc \
   qt/intro.moc \
   qt/overviewpage.moc \
   qt/rpcconsole.moc
 
-QT_QRC_CPP = qt/qrc_alqo.cpp
-QT_QRC = qt/alqo.qrc
-QT_QRC_LOCALE_CPP = qt/qrc_alqo_locale.cpp
-QT_QRC_LOCALE = qt/alqo_locale.qrc
+QT_QRC_CPP = qt/qrc_lavas.cpp
+QT_QRC = qt/lavas.qrc
+QT_QRC_LOCALE_CPP = qt/qrc_lavas_locale.cpp
+QT_QRC_LOCALE = qt/lavas_locale.qrc
 
 PROTOBUF_CC = qt/paymentrequest.pb.cc
 PROTOBUF_H = qt/paymentrequest.pb.h
@@ -222,12 +222,12 @@ RES_ICONS = \
   qt/res/icons/tx_output.png \
   qt/res/icons/tx_mined.png \
   qt/res/icons/tx_mn.png \
-  qt/res/icons/unit_alqo.png \
-  qt/res/icons/unit_malqo.png \
-  qt/res/icons/unit_ualqo.png \
-  qt/res/icons/unit_talqo.png \
-  qt/res/icons/unit_tmalqo.png \
-  qt/res/icons/unit_tualqo.png
+  qt/res/icons/unit_lavas.png \
+  qt/res/icons/unit_mlavas.png \
+  qt/res/icons/unit_ulavas.png \
+  qt/res/icons/unit_tlavas.png \
+  qt/res/icons/unit_tmlavas.png \
+  qt/res/icons/unit_tulavas.png
 
 BITCOIN_QT_CPP = \
   qt/bitcoinaddressvalidator.cpp \
@@ -294,7 +294,7 @@ RES_IMAGES = \
   qt/res/images/about.png \
   qt/res/images/splash.png \
   qt/res/images/splash_testnet.png \
-  qt/res/images/alqo_logo_horizontal.png \
+  qt/res/images/lavas_logo_horizontal.png \
   qt/res/images/downArrow.png \
   qt/res/images/downArrow_small.png \
   qt/res/images/upArrow_small.png \
@@ -311,7 +311,7 @@ RES_CSS = \
 
 RES_MOVIES = $(wildcard $(srcdir)/qt/res/movies/spinner-*.png)
 
-BITCOIN_RC = qt/res/alqo-qt-res.rc
+BITCOIN_RC = qt/res/lavas-qt-res.rc
 
 BITCOIN_QT_INCLUDES = -I$(builddir)/qt -I$(srcdir)/qt -I$(srcdir)/qt/forms \
   -I$(builddir)/qt/forms
@@ -331,68 +331,68 @@ QT_FORMS_H=$(join $(dir $(QT_FORMS_UI)),$(addprefix ui_, $(notdir $(QT_FORMS_UI:
 # Most files will depend on the forms and moc files as includes. Generate them
 # before anything else.
 $(QT_MOC): $(QT_FORMS_H)
-$(qt_libbitcoinqt_a_OBJECTS) $(qt_alqo_qt_OBJECTS) : | $(QT_MOC)
+$(qt_libbitcoinqt_a_OBJECTS) $(qt_lavas_qt_OBJECTS) : | $(QT_MOC)
 
 #Generating these with a half-written protobuf header leads to wacky results.
 #This makes sure it's done.
 $(QT_MOC): $(PROTOBUF_H)
 $(QT_MOC_CPP): $(PROTOBUF_H)
 
-# alqo-qt binary #
-qt_alqo_qt_CPPFLAGS = $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
+# lavas-qt binary #
+qt_lavas_qt_CPPFLAGS = $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
   $(QT_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS)
 
-qt_alqo_qt_SOURCES = qt/alqo.cpp
+qt_lavas_qt_SOURCES = qt/lavas.cpp
 if TARGET_DARWIN
-  qt_alqo_qt_SOURCES += $(BITCOIN_MM)
+  qt_lavas_qt_SOURCES += $(BITCOIN_MM)
 endif
 if TARGET_WINDOWS
-  qt_alqo_qt_SOURCES += $(BITCOIN_RC)
+  qt_lavas_qt_SOURCES += $(BITCOIN_RC)
 endif
-qt_alqo_qt_LDADD = qt/libbitcoinqt.a $(LIBBITCOIN_SERVER)
+qt_lavas_qt_LDADD = qt/libbitcoinqt.a $(LIBBITCOIN_SERVER)
 if ENABLE_WALLET
-qt_alqo_qt_LDADD += $(LIBBITCOIN_WALLET)
+qt_lavas_qt_LDADD += $(LIBBITCOIN_WALLET)
 endif
 if ENABLE_ZMQ
-qt_alqo_qt_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
+qt_lavas_qt_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
 endif
-qt_alqo_qt_LDADD += $(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_CRYPTO) $(LIBBITCOIN_UNIVALUE) $(LIBLEVELDB) $(LIBMEMENV) \
+qt_lavas_qt_LDADD += $(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_CRYPTO) $(LIBBITCOIN_UNIVALUE) $(LIBLEVELDB) $(LIBMEMENV) \
   $(BOOST_LIBS) $(QT_LIBS) $(QT_DBUS_LIBS) $(QR_LIBS) $(PROTOBUF_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(LIBSECP256K1)
-qt_alqo_qt_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
-qt_alqo_qt_LIBTOOLFLAGS = --tag CXX
+qt_lavas_qt_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+qt_lavas_qt_LIBTOOLFLAGS = --tag CXX
 
 #locale/foo.ts -> locale/foo.qm
 QT_QM=$(QT_TS:.ts=.qm)
 
 .SECONDARY: $(QT_QM)
 
-qt/alqostrings.cpp: $(libbitcoin_server_a_SOURCES) $(libbitcoin_wallet_a_SOURCES) $(libbitcoin_common_a_SOURCES)
+qt/lavasstrings.cpp: $(libbitcoin_server_a_SOURCES) $(libbitcoin_wallet_a_SOURCES) $(libbitcoin_common_a_SOURCES)
 	@test -n $(XGETTEXT) || echo "xgettext is required for updating translations"
 	$(AM_V_GEN) cd $(srcdir); XGETTEXT=$(XGETTEXT) $(PYTHON) ../share/qt/extract_strings_qt.py $^
 
-translate: qt/alqostrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(BITCOIN_QT_CPP) $(BITCOIN_QT_H) $(BITCOIN_MM)
+translate: qt/lavasstrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(BITCOIN_QT_CPP) $(BITCOIN_QT_H) $(BITCOIN_MM)
 	@test -n $(LUPDATE) || echo "lupdate is required for updating translations"
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LUPDATE) $^ -locations relative -no-obsolete -ts qt/locale/alqo_en.ts
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LUPDATE) $^ -locations relative -no-obsolete -ts qt/locale/lavas_en.ts
 
 $(QT_QRC_LOCALE_CPP): $(QT_QRC_LOCALE) $(QT_QM)
 	@test -f $(RCC)
 	@test -f $(@D)/$(<F) || cp -f $< $(@D)
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name alqo_locale $(@D)/$(<F) | \
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name lavas_locale $(@D)/$(<F) | \
 	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
 
 $(QT_QRC_CPP): $(QT_QRC) $(QT_FORMS_H) $(RES_ICONS) $(RES_IMAGES) $(RES_CSS) $(RES_MOVIES) $(PROTOBUF_H)
 	@test -f $(RCC)
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name alqo $< | \
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name lavas $< | \
 	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
 
 CLEAN_QT = $(nodist_qt_libbitcoinqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda qt/*.gcno
 
 CLEANFILES += $(CLEAN_QT)
 
-alqo_qt_clean: FORCE
-	rm -f $(CLEAN_QT) $(qt_libbitcoinqt_a_OBJECTS) $(qt_alqo_qt_OBJECTS) qt/alqo-qt$(EXEEXT) $(LIBBITCOINQT)
+lavas_qt_clean: FORCE
+	rm -f $(CLEAN_QT) $(qt_libbitcoinqt_a_OBJECTS) $(qt_lavas_qt_OBJECTS) qt/lavas-qt$(EXEEXT) $(LIBBITCOINQT)
 
-alqo_qt : qt/alqo-qt$(EXEEXT)
+lavas_qt : qt/lavas-qt$(EXEEXT)
 
 ui_%.h: %.ui
 	@test -f $(UIC)

@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=LAVAS
+Comment=LAVAS P2P Cryptocurrency
+Comment[fr]=LAVAS, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=LAVAS, eşten eşe kriptografik sanal para birimi
+Exec=lavas-qt %u
+Terminal=false
+Type=Application
+Icon=lavas128
+MimeType=x-scheme-handler/lavas;
+Categories=Office;Finance;

@@ -10,10 +10,10 @@
 
 /**
  * Name of client reported in the 'version' message. Report the same name
- * for both alqod and alqo-qt, to make it harder for attackers to
+ * for both lavasd and lavas-qt, to make it harder for attackers to
  * target servers or GUI users specifically.
  */
-const std::string CLIENT_NAME("ALQO Core");
+const std::string CLIENT_NAME("LAVAS Core");
 
 /**
  * Client version number

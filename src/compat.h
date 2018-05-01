@@ -7,7 +7,7 @@
 #define BITCOIN_COMPAT_H
 
 #if defined(HAVE_CONFIG_H)
-#include "config/alqo-config.h"
+#include "config/lavas-config.h"
 #endif
 
 #ifdef WIN32

@@ -1,12 +1,12 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers 
-// Copyright (c) 2015-2017 The ALQO developers
+// Copyright (c) 2015-2017 The LAVAS developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/alqo-config.h"
+#include "config/lavas-config.h"
 #endif
 
 #include "optionsmodel.h"
@@ -62,7 +62,7 @@ void OptionsModel::Init()
 
     // Display
     if (!settings.contains("nDisplayUnit"))
-        settings.setValue("nDisplayUnit", BitcoinUnits::ALQO);
+        settings.setValue("nDisplayUnit", BitcoinUnits::LAVAS);
     nDisplayUnit = settings.value("nDisplayUnit").toInt();
 
     if (!settings.contains("strThirdPartyTxUrls"))
@@ -76,11 +76,11 @@ void OptionsModel::Init()
     if (!settings.contains("nDarksendRounds"))
         settings.setValue("nDarksendRounds", 2);
 
-    if (!settings.contains("nAnonymizeALQOAmount"))
-        settings.setValue("nAnonymizeALQOAmount", 1000);
+    if (!settings.contains("nAnonymizeLAVASAmount"))
+        settings.setValue("nAnonymizeLAVASAmount", 1000);
 
     nDarksendRounds = settings.value("nDarksendRounds").toLongLong();
-    nAnonymizeALQOAmount = settings.value("nAnonymizeALQOAmount").toLongLong();
+    nAnonymizeLAVASAmount = settings.value("nAnonymizeLAVASAmount").toLongLong();
 
     if (!settings.contains("fShowMasternodesTab"))
         settings.setValue("fShowMasternodesTab", masternodeConfig.getCount());
@@ -147,8 +147,8 @@ void OptionsModel::Init()
 
     if (settings.contains("nDarksendRounds"))
         SoftSetArg("-Darksendrounds", settings.value("nDarksendRounds").toString().toStdString());
-    if (settings.contains("nAnonymizeALQOAmount"))
-        SoftSetArg("-anonymizealqoamount", settings.value("nAnonymizeALQOAmount").toString().toStdString());
+    if (settings.contains("nAnonymizeLAVASAmount"))
+        SoftSetArg("-anonymizelavasamount", settings.value("nAnonymizeLAVASAmount").toString().toStdString());
 
     language = settings.value("language").toString();
 }
@@ -159,7 +159,7 @@ void OptionsModel::Reset()
 
     // Remove all entries from our QSettings object
     settings.clear();
-    resetSettings = true; // Needed in alqo.cpp during shotdown to also remove the window positions
+    resetSettings = true; // Needed in lavas.cpp during shotdown to also remove the window positions
 
     // default setting for OptionsModel::StartAtStartup - disabled
     if (GUIUtil::GetStartOnSystemStartup())
@@ -228,8 +228,8 @@ QVariant OptionsModel::data(const QModelIndex& index, int role) const
             return settings.value("nThreadsScriptVerif");
         case DarksendRounds:
             return QVariant(nDarksendRounds);
-        case AnonymizeALQOAmount:
-            return QVariant(nAnonymizeALQOAmount);
+        case AnonymizeLAVASAmount:
+            return QVariant(nAnonymizeLAVASAmount);
         case Listen:
             return settings.value("fListen");
         default:
@@ -338,10 +338,10 @@ bool OptionsModel::setData(const QModelIndex& index, const QVariant& value, int 
             settings.setValue("nDarksendRounds", nDarksendRounds);
             emit DarksendRoundsChanged(nDarksendRounds);
             break;
-        case AnonymizeALQOAmount:
-            nAnonymizeALQOAmount = value.toInt();
-            settings.setValue("nAnonymizeALQOAmount", nAnonymizeALQOAmount);
-            emit anonymizeALQOAmountChanged(nAnonymizeALQOAmount);
+        case AnonymizeLAVASAmount:
+            nAnonymizeLAVASAmount = value.toInt();
+            settings.setValue("nAnonymizeLAVASAmount", nAnonymizeLAVASAmount);
+            emit anonymizeLAVASAmountChanged(nAnonymizeLAVASAmount);
             break;
         case CoinControlFeatures:
             fCoinControlFeatures = value.toBool();
